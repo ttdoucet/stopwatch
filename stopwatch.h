@@ -22,11 +22,13 @@ public:
     {
         time_point stopped = std::chrono::high_resolution_clock::now();
         accum += (stopped - started).count();
+        nlaps++;
     }
 
     void reset()
     {
         accum = 0;
+        nlaps = 0;
     }
 
     int64_t elapsed_ns()
@@ -52,9 +54,16 @@ public:
         return elapsed_ns() / 1.0e9;
     }
 
+    int laps()
+    {
+        return nlaps;
+    }
+
+
 private:
     time_point<high_resolution_clock> started;
     int64_t accum = 0;
+    int nlaps = 0;
 };
 
 } // namespace detail_stopwatch
