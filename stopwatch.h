@@ -60,3 +60,16 @@ private:
 } // namespace detail_stopwatch
 
 using detail_stopwatch::stopwatch;
+
+template<typename T>
+void print(T&& only)
+{
+    std::cout << only << "\n";
+}
+
+template<typename T, typename...Ts>
+void print(T&& first, Ts&&...rest)
+{
+    std::cout << first << " ";
+    print(rest...);
+}
